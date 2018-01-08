@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Post-facto Imaging &#8212; pyXem 0.4 documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Indexation &amp; Peak Integration" href="indexation_integration.html" />
+    <link rel="prev" title="Simulating electron diffraction" href="diffraction_simulation.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          pyXem</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Electron Diffraction Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#calibration">Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffraction_simulation.html">Simulating electron diffraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffraction_simulation.html#kinematical-simulation-of-spot-patterns">Kinematical simulation of spot patterns</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Post-facto Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#intensity-imaging">Intensity Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#variance-imaging">Variance Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indexation_integration.html">Indexation &amp; Peak Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orientation_imaging.html">Orientation Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orientation_imaging.html#template-matching">Template Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="orientation_imaging.html#direct-indexation">Direct Indexation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strain_mapping.html">Strain Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strain_mapping.html#direct-indexation">Direct Indexation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strain_mapping.html#image-processing">Image Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strain_mapping.html#forward-modelling">Forward Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pyxem</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Post-facto Imaging</a></li>
+<li><a class="reference internal" href="#intensity-imaging">Intensity Imaging</a></li>
+<li><a class="reference internal" href="#variance-imaging">Variance Imaging</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="diffraction_simulation.html" title="Previous Chapter: Simulating electron diffraction"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Simulating el...</span>
+    </a>
+  </li>
+  <li>
+    <a href="indexation_integration.html" title="Next Chapter: Indexation & Peak Integration"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Indexation & ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/post_facto_imaging.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="post-facto-imaging">
+<h1>Post-facto Imaging<a class="headerlink" href="#post-facto-imaging" title="Permalink to this headline">¶</a></h1>
+<p>Post-facto imaging refers to the formation of images from a scanning electron
+diffraction dataset by applying some operation to the diffraction pattern
+associated with each pixel in the scan. Numerous operations may be applied to
+the diffraction data and a number of methods are implemented accordingly as
+described in this section. Many operations involve selecting a subset of pixels
+in the diffraction pattern and this is achieved in pyXem using the roi
+functionality implemented in HyperSpy.</p>
+</div>
+<div class="section" id="intensity-imaging">
+<h1>Intensity Imaging<a class="headerlink" href="#intensity-imaging" title="Permalink to this headline">¶</a></h1>
+<p>Vitual diffraction imaging involves plotting the intensity within a subset of
+pixels in the recorded diffraction patterns as a function of probe position.</p>
+</div>
+<div class="section" id="variance-imaging">
+<h1>Variance Imaging<a class="headerlink" href="#variance-imaging" title="Permalink to this headline">¶</a></h1>
+<p>Variance imaging involves plotting the variance within a subset of pixels in
+the recorded diffraction patterns as a function of probe position.</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Copyright 2016, Python Crystallographic Electron Microscopy.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pyxem.diffraction_vectors &#8212; pyXem 0.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          pyXem</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Electron Diffraction Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html#calibration">Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../diffraction_simulation.html">Simulating electron diffraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../diffraction_simulation.html#kinematical-simulation-of-spot-patterns">Kinematical simulation of spot patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post_facto_imaging.html">Post-facto Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post_facto_imaging.html#intensity-imaging">Intensity Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post_facto_imaging.html#variance-imaging">Variance Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexation_integration.html">Indexation &amp; Peak Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../orientation_imaging.html">Orientation Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../orientation_imaging.html#template-matching">Template Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../orientation_imaging.html#direct-indexation">Direct Indexation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../strain_mapping.html">Strain Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../strain_mapping.html#direct-indexation">Direct Indexation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../strain_mapping.html#image-processing">Image Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../strain_mapping.html#forward-modelling">Forward Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pyxem</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for pyxem.diffraction_vectors</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2017 The pyXem developers</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of pyXem.</span>
+<span class="c1">#</span>
+<span class="c1"># pyXem is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># pyXem is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with pyXem.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kn">from</span> <span class="nn">hyperspy.api</span> <span class="k">import</span> <span class="n">roi</span>
+<span class="kn">from</span> <span class="nn">hyperspy.signals</span> <span class="k">import</span> <span class="n">BaseSignal</span><span class="p">,</span> <span class="n">Signal1D</span><span class="p">,</span> <span class="n">Signal2D</span>
+
+<span class="kn">from</span> <span class="nn">.utils.expt_utils</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Signal class for diffraction vectors.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">_calculate_norms</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">norms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1">#print(z)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">norms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">norms</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DiffractionVectors"><a class="viewcode-back" href="../../pycrystem.html#pyxem.diffraction_vectors.DiffractionVectors">[docs]</a><span class="k">class</span> <span class="nc">DiffractionVectors</span><span class="p">(</span><span class="n">BaseSignal</span><span class="p">):</span>
+    <span class="n">_signal_type</span> <span class="o">=</span> <span class="s2">&quot;diffraction_vectors&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">BaseSignal</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="c1"># This overwrited a method in base signal and has been renamed</span>
+<div class="viewcode-block" id="DiffractionVectors.plot_diff_vects"><a class="viewcode-back" href="../../pycrystem.html#pyxem.diffraction_vectors.DiffractionVectors.plot_diff_vects">[docs]</a>    <span class="k">def</span> <span class="nf">plot_diff_vects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#Plot the diffraction vectors.</span>
+        
+        <span class="c1">#Find the unique gvectors to plot.</span>
+        <span class="n">unique_vectors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_unique_vectors</span><span class="p">()</span>
+        <span class="c1">#Plot the gvector positions</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">unique_vectors</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">unique_vectors</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="DiffractionVectors.get_magnitudes"><a class="viewcode-back" href="../../pycrystem.html#pyxem.diffraction_vectors.DiffractionVectors.get_magnitudes">[docs]</a>    <span class="k">def</span> <span class="nf">get_magnitudes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate the magnitude of diffraction vectors.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        magnitudes : BaseSignal</span>
+<span class="sd">            A signal with navigation dimensions as the original diffraction</span>
+<span class="sd">            vectors containging an array of gvector magnitudes at each</span>
+<span class="sd">            navigation position.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">magnitudes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_calculate_norms</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">magnitudes</span></div>
+
+<div class="viewcode-block" id="DiffractionVectors.get_magnitude_histogram"><a class="viewcode-back" href="../../pycrystem.html#pyxem.diffraction_vectors.DiffractionVectors.get_magnitude_histogram">[docs]</a>    <span class="k">def</span> <span class="nf">get_magnitude_histogram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bins</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtain a histogram of gvector magnitudes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bins : numpy array</span>
+<span class="sd">            The bins to be used to generate the histogram.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ghist : Signal1D</span>
+<span class="sd">            Histogram of gvector magnitudes.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gnorms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_magnitudes</span><span class="p">()</span>
+
+        <span class="n">glist</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">gnorms</span><span class="o">.</span><span class="n">_iterate_signal</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+                <span class="n">glist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">gs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">glist</span><span class="p">)</span>
+        <span class="n">gsig</span> <span class="o">=</span> <span class="n">Signal1D</span><span class="p">(</span><span class="n">gs</span><span class="p">)</span>
+        <span class="n">ghis</span> <span class="o">=</span> <span class="n">gsig</span><span class="o">.</span><span class="n">get_histogram</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+        <span class="n">ghis</span><span class="o">.</span><span class="n">axes_manager</span><span class="o">.</span><span class="n">signal_axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;g-vector magnitude&#39;</span>
+        <span class="n">ghis</span><span class="o">.</span><span class="n">axes_manager</span><span class="o">.</span><span class="n">signal_axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;$A^{-1}$&#39;</span>
+        <span class="k">return</span> <span class="n">ghis</span></div>
+
+<div class="viewcode-block" id="DiffractionVectors.get_unique_vectors"><a class="viewcode-back" href="../../pycrystem.html#pyxem.diffraction_vectors.DiffractionVectors.get_unique_vectors">[docs]</a>    <span class="k">def</span> <span class="nf">get_unique_vectors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                           <span class="n">distance_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtain a list of unique diffraction vectors.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        distance_threshold : float</span>
+<span class="sd">            The minimum distance between diffraction vectors for them to be considered</span>
+<span class="sd">            as unique diffraction vectors.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        unique_vectors : float</span>
+<span class="sd">            Ndarray of all unique diffraction vectors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="k">import</span> <span class="n">distance_matrix</span>
+        <span class="k">def</span> <span class="nf">get_new_indices_from_distance_matrix</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span><span class="n">distance_threshold</span><span class="p">):</span>
+        <span class="c1">#Checks if the distances from one vector in vlist to all other vectors in gvlist</span>
+        <span class="c1">#is larger than distance_threshold. </span>
+            <span class="n">new_indices</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">distances</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">distances</span><span class="p">)[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">distances</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">distance_threshold</span><span class="p">)</span> <span class="o">==</span> <span class="n">l</span><span class="p">):</span>
+                    <span class="n">new_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_indices</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_indices</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_manager</span><span class="o">.</span><span class="n">navigation_dimension</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">gvlist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gvlist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]])</span>
+            
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_iterate_signal</span><span class="p">()):</span>
+            <span class="n">vlist</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">distances</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="p">(</span><span class="n">gvlist</span><span class="p">,</span><span class="n">vlist</span><span class="p">)</span>
+            <span class="n">new_indices</span> <span class="o">=</span> <span class="n">get_new_indices_from_distance_matrix</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span><span class="n">distance_threshold</span><span class="p">)</span>
+            <span class="n">gvlist_new</span> <span class="o">=</span> <span class="n">vlist</span><span class="p">[</span><span class="n">new_indices</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">gvlist_new</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="n">gvlist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">gvlist</span><span class="p">,</span> <span class="n">gvlist_new</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1">#An internal check, just to be sure.</span>
+        <span class="n">delete_indices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">gvlist</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="p">(</span><span class="n">gvlist</span><span class="p">,</span><span class="n">gvlist</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">distances</span><span class="p">)[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">distances</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">distance_threshold</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">delete_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">delete_indices</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">gvlist</span><span class="p">,</span><span class="n">delete_indices</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DiffractionVectors.get_vdf_images"><a class="viewcode-back" href="../../pycrystem.html#pyxem.diffraction_vectors.DiffractionVectors.get_vdf_images">[docs]</a>    <span class="k">def</span> <span class="nf">get_vdf_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                       <span class="n">electron_diffraction</span><span class="p">,</span>
+                       <span class="n">radius</span><span class="p">,</span>
+                       <span class="n">unique_vectors</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Obtain the intensity scattered to each diffraction vector at each</span>
+<span class="sd">        navigation position in an ElectronDiffraction Signal by summation in a</span>
+<span class="sd">        circular window of specified radius.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        unique_vectors : list (optional)</span>
+<span class="sd">            Unique list of diffracting vectors if pre-calculated. If None the</span>
+<span class="sd">            unique vectors in self are determined and used.</span>
+
+<span class="sd">        electron_diffraction : ElectronDiffraction</span>
+<span class="sd">            ElectronDiffraction signal from which to extract the reflection</span>
+<span class="sd">            intensities.</span>
+
+<span class="sd">        radius : float</span>
+<span class="sd">            Radius of the integration window summed over in reciprocal angstroms.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        vdfs : Signal2D</span>
+<span class="sd">            Signal containing virtual dark field images for all unique g-vectors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">unique_vectors</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
+            <span class="n">unique_vectors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_unique_vectors</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">unique_vectors</span> <span class="o">=</span> <span class="n">unique_vectors</span>
+
+        <span class="n">vdfs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">unique_vectors</span><span class="p">:</span>
+            <span class="n">disk</span> <span class="o">=</span> <span class="n">roi</span><span class="o">.</span><span class="n">CircleROI</span><span class="p">(</span><span class="n">cx</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cy</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">r</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="n">r_inner</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">vdf</span> <span class="o">=</span> <span class="n">disk</span><span class="p">(</span><span class="n">electron_diffraction</span><span class="p">,</span>
+                       <span class="n">axes</span><span class="o">=</span><span class="n">electron_diffraction</span><span class="o">.</span><span class="n">axes_manager</span><span class="o">.</span><span class="n">signal_axes</span><span class="p">)</span>
+            <span class="n">vdfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vdf</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">as_signal2D</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Signal2D</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vdfs</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="DiffractionVectors.get_gvector_indexation"><a class="viewcode-back" href="../../pycrystem.html#pyxem.diffraction_vectors.DiffractionVectors.get_gvector_indexation">[docs]</a>    <span class="k">def</span> <span class="nf">get_gvector_indexation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                               <span class="n">calculated_peaks</span><span class="p">,</span>
+                               <span class="n">magnitude_threshold</span><span class="p">,</span>
+                               <span class="n">angular_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Index diffraction vectors based on the magnitude of individual</span>
+<span class="sd">        vectors and optionally the angles between pairs of vectors.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        calculated_peaks : array</span>
+<span class="sd">            Structured array containing the theoretical diffraction vector</span>
+<span class="sd">            magnitudes and angles between vectors.</span>
+
+<span class="sd">        magnitude_threshold : Float</span>
+<span class="sd">            Maximum deviation in diffraction vector magnitude from the</span>
+<span class="sd">            theoretical value for an indexation to be considered possible.</span>
+
+<span class="sd">        angular_threshold : float</span>
+<span class="sd">            Maximum deviation in the measured angle between vector</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        gindex : array</span>
+<span class="sd">            Structured array containing possible indexations</span>
+<span class="sd">            consistent with the data.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#TODO: Specify threshold as a fraction of the g-vector magnitude.</span>
+        <span class="n">arr_shape</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_manager</span><span class="o">.</span><span class="n">_navigation_shape_in_array</span>
+                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes_manager</span><span class="o">.</span><span class="n">navigation_size</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                     <span class="k">else</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">])</span>
+        <span class="n">gindex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">arr_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes_manager</span><span class="p">:</span>
+            <span class="n">it</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">glengths</span><span class="p">[</span><span class="n">it</span><span class="p">])):</span>
+                <span class="n">peak_diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">calc_peaks</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">glengths</span><span class="p">[</span><span class="n">it</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">calc_peaks</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">glengths</span><span class="p">[</span><span class="n">it</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">calc_peaks</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">peak_diff</span> <span class="o">&lt;</span> <span class="n">magnitude_threshold</span><span class="p">)],</span>
+                            <span class="n">peak_diff</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">peak_diff</span> <span class="o">&lt;</span> <span class="n">magnitude_threshold</span><span class="p">)]))</span>
+            <span class="n">gindex</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span>
+
+        <span class="k">if</span> <span class="n">angular_threshold</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">return</span> <span class="n">gindex</span></div>
+
+<div class="viewcode-block" id="DiffractionVectors.get_zone_axis_indexation"><a class="viewcode-back" href="../../pycrystem.html#pyxem.diffraction_vectors.DiffractionVectors.get_zone_axis_indexation">[docs]</a>    <span class="k">def</span> <span class="nf">get_zone_axis_indexation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determine the zone axis consistent with the majority of indexed</span>
+<span class="sd">        diffraction vectors.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Copyright 2016, Python Crystallographic Electron Microscopy.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

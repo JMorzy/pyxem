@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Orientation Imaging &#8212; pyXem 0.4 documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Strain Mapping" href="strain_mapping.html" />
+    <link rel="prev" title="Indexation &amp; Peak Integration" href="indexation_integration.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          pyXem</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.4</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Electron Diffraction Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#calibration">Calibration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffraction_simulation.html">Simulating electron diffraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffraction_simulation.html#kinematical-simulation-of-spot-patterns">Kinematical simulation of spot patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post_facto_imaging.html">Post-facto Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post_facto_imaging.html#intensity-imaging">Intensity Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post_facto_imaging.html#variance-imaging">Variance Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indexation_integration.html">Indexation &amp; Peak Integration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Orientation Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#template-matching">Template Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#direct-indexation">Direct Indexation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strain_mapping.html">Strain Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strain_mapping.html#direct-indexation">Direct Indexation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strain_mapping.html#image-processing">Image Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strain_mapping.html#forward-modelling">Forward Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pyxem</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Orientation Imaging</a></li>
+<li><a class="reference internal" href="#template-matching">Template Matching</a></li>
+<li><a class="reference internal" href="#direct-indexation">Direct Indexation</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="indexation_integration.html" title="Previous Chapter: Indexation & Peak Integration"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Indexation & ...</span>
+    </a>
+  </li>
+  <li>
+    <a href="strain_mapping.html" title="Next Chapter: Strain Mapping"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Strain Mapping &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/orientation_imaging.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="orientation-imaging">
+<h1>Orientation Imaging<a class="headerlink" href="#orientation-imaging" title="Permalink to this headline">¶</a></h1>
+<p>Orientation imaging can be achieved in a number of ways based on the acquisition
+of numerous electron diffraction patterns in the scanning transmission
+electron microscope. A range of analysis procedures implemented to this end as
+described in this section.</p>
+</div>
+<div class="section" id="template-matching">
+<h1>Template Matching<a class="headerlink" href="#template-matching" title="Permalink to this headline">¶</a></h1>
+<p>Template matching involves comparing each diffraction pattern in the dataset to
+a library of simulated template patterns and determining the optimal fit at each
+pixel.</p>
+<p>A library of template patterns is first generated using the ElectronDiffractionGenerator</p>
+</div>
+<div class="section" id="direct-indexation">
+<h1>Direct Indexation<a class="headerlink" href="#direct-indexation" title="Permalink to this headline">¶</a></h1>
+<p>Direct indexation proceeds by determining the g-vectors recorded in each
+diffraction pattern and</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Copyright 2016, Python Crystallographic Electron Microscopy.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
